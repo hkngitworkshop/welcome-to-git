@@ -9,6 +9,16 @@ class Inventory:
     def __init__(self, items=[]):
         self.items = items
     
+    def __str__(self):
+        lines = ["Items currently in inventory: "]
+        for item in self.items:
+            id = item.getID()
+            name = item.getName()
+            color = item.getColor()
+            count = item.getCount()
+            lines += ["{0}: name = {1}, color = {2}, count = {3}".format(id, name, color, count)]
+        return '\n'.join(lines)
+    
     def add(self, item):
         self.items.append(item)
     
@@ -98,8 +108,10 @@ if __name__ == "__main__":
     my_grocery.buyItem(hersheys2, 1000)
 
     # Take a final tally before we close up!
-    for item in my_grocery.getItems():
-        print("{0}, {1} --> {2}".format(*(item)))
+    # for item in my_grocery.getItems():
+    #     print("{0}, {1} --> {2}".format(*(item)))
+    print()
+    print(my_grocery)
     
     # Close up!
     exit(0)
